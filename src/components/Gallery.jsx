@@ -7,7 +7,7 @@ const images = [
   "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=800",
   "https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=80&w=800",
   "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?q=80&w=800",
-  "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800", // 5th Pic Fixed
+  "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=800", 
   "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=800"
 ];
 
@@ -27,7 +27,7 @@ const Gallery = () => {
               onError={(e) => { e.target.src = "https://via.placeholder.com/400x500?text=Image+Loading..."; }} 
             />
             <div className="gallery-overlay">
-              <span>View Style</span>
+              
             </div>
           </div>
         ))}

@@ -1,29 +1,40 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useRef } from 'react';
 import './Contact.css';
 
 const Contact = ({ onBookingRequest }) => {
   const form = useRef();
-  const [isSending, setIsSending] = useState(false);
 
-  const sendEmail = (e) => {
+  const handleWhatsAppSubmit = (e) => {
     e.preventDefault();
-    setIsSending(true);
 
-    emailjs.sendForm(
-      'YOUR_SERVICE_ID', 
-      'YOUR_TEMPLATE_ID', 
-      form.current, 
-      'YOUR_PUBLIC_KEY'
-    )
-    .then(() => {
-        setIsSending(false);
-        onBookingRequest();
-        e.target.reset();
-    }, () => {
-        setIsSending(false);
-        alert("Submission failed. Check your EmailJS keys!");
-    });
+    // Form se data nikalna
+    const data = new FormData(form.current);
+    const name = data.get('from_name');
+    const phone = data.get('user_phone');
+    const service = data.get('selected_service');
+    const note = data.get('message') || "None";
+
+    // --- DHAYAN SE: Apna 10-digit number 91 ke sath yahan likhein ---
+    // Example: "919876543210"
+    const myWhatsAppNumber = "919204781140"; 
+
+    // Message ko format karna (Bold text ke liye * use kiya hai)
+    const messageBody = `*AURUM SALON BOOKING*%0A` + 
+                        `--------------------%0A` +
+                        `*Customer:* ${name}%0A` +
+                        `*Phone:* ${phone}%0A` +
+                        `*Service:* ${service}%0A` +
+                        `*Note:* ${note}%0A` +
+                        `--------------------`;
+
+    // Sabse reliable WhatsApp link format
+    const whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${messageBody}`;
+
+    // Success Modal trigger karna
+    if(onBookingRequest) onBookingRequest();
+
+    // Mobile par direct WhatsApp open karne ke liye
+    window.location.href = whatsappURL;
   };
 
   return (
@@ -35,7 +46,7 @@ const Contact = ({ onBookingRequest }) => {
           <p>Experience the art of luxury hair styling.</p>
         </div>
 
-        <form ref={form} onSubmit={sendEmail} className="appointment-form">
+        <form ref={form} onSubmit={handleWhatsAppSubmit} className="appointment-form">
           <div className="form-row">
             <input type="text" name="from_name" placeholder="Full Name" required />
             <input type="email" name="user_email" placeholder="Email Address" required />
@@ -53,8 +64,8 @@ const Contact = ({ onBookingRequest }) => {
 
           <textarea name="message" placeholder="Special Requests (Optional)"></textarea>
 
-          <button type="submit" className="confirm-btn" disabled={isSending}>
-            {isSending ? "SENDING..." : "CONFIRM APPOINTMENT"}
+          <button type="submit" className="confirm-btn">
+            BOOK AN APPOINTMENT
           </button>
         </form>
       </div>
