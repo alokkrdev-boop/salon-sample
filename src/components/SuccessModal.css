@@ -1,0 +1,63 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 60px 40px;
+  border-radius: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--gold);
+  color: white;
+  font-size: 40px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 30px;
+}
+
+.modal-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #666;
+  margin-bottom: 35px;
+}
+
+.close-btn {
+  background: var(--dark);
+  color: white;
+  width: 100%;
+  padding: 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.close-btn:hover {
+  background: var(--gold);
+}

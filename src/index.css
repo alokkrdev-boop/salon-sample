@@ -1,0 +1,37 @@
+html {
+  scroll-behavior: smooth !important;
+}
+
+
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --gold: #c5a059;
+  --dark: #222222;
+  --beige: #f9f7f2;
+  --white: #ffffff;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  --serif: 'Playfair Display', serif;
+  --sans: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--beige);
+  color: var(--dark);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
